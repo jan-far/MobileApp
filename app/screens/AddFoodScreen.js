@@ -25,8 +25,7 @@ function AddFoodScreen(props) {
   const [fullData, setFullData] = useState([]);
   const [dataNoSlice, setDataNoSlice] = useState([]);
   const [query, setQuery] = useState("");
-  const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState(false);
+  const [page, setPage] = useState(19);
 
   const title = props.route.params.title;
   const test = foodData.map((food) => {
@@ -39,7 +38,7 @@ function AddFoodScreen(props) {
       setFullData([]);
     };
   }, []);
-
+s
   const renderSeparator = () => (
     <View
       style={{
@@ -50,10 +49,6 @@ function AddFoodScreen(props) {
       }}
     />
   );
-
-  const handleLoadMore = () => {
-    console.log("i have been triggered");
-  };
 
   const handleSearch = (text) => {
     const formatQuery = text.toLowerCase();
@@ -66,13 +61,7 @@ function AddFoodScreen(props) {
     setData(filteredData.slice(0, 19));
   };
 
-  const renderData = ({ item }) => {
-    return <AppText>{item.title}</AppText>;
-  };
-
-  const loadMore = () => {
-    return data;
-  };
+  const 
 
   return (
     <Screen>
@@ -87,13 +76,7 @@ function AddFoodScreen(props) {
         />
       </View>
       <View style={styles.container}>
-        <InfiniteScroll
-          renderData={renderData}
-          data={data}
-          loadMore={loadMore}
-        />
-
-        {/* <FlatList
+        <FlatList
           contentContrainerStyle={{ padding: 20 }}
           data={data}
           ItemSeparatorComponent={renderSeparator}
@@ -104,7 +87,7 @@ function AddFoodScreen(props) {
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
           initialNumToRender={10}
-        /> */}
+        />
       </View>
     </Screen>
   );
